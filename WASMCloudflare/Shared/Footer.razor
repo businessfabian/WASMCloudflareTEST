@@ -1,0 +1,69 @@
+﻿@using WASMCloudflare.Models
+
+@inject WASMCloudflare.Services.PortifilioConfigurationService Service
+
+<!-- Footer -->
+<footer class="footer text-center">
+    <center>
+        <div class="row">
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <!-- Footer Location -->
+                <img width="200" src="/LogoVivida.png" style="margin: 2em 0em 0em 0em" runat="server" />
+            </div>
+            <!-- Footer Social Icons -->
+            <div class="col-lg-3 mb-5 mb-lg-0">
+                <h6 class="text-uppercase mb-4">Social Media</h6>
+                @if (!string.IsNullOrEmpty(model.SocialLinks.FaceBookLink))
+                {
+                    <a class="btn btn-outline-light btn-social mx-1" href="@model.SocialLinks.FaceBookLink">
+                        <i class="fab fa-fw fa-facebook-f" style="color:#3b5998;"></i>
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(model.SocialLinks.TwitterLink))
+                {
+                    <a class="btn btn-outline-light btn-social mx-1" href="@model.SocialLinks.TwitterLink">
+                        <i class="fa-brands fa-twitter" style="color:#1DA1F2;"></i>
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(model.SocialLinks.LinkedInLink))
+                {
+                    <a class="btn btn-outline-light btn-social mx-1" href="@model.SocialLinks.LinkedInLink">
+                        <i class="fab fa-fw fa-linkedin-in" style="color:#0A66C2;"></i>
+                    </a>
+                }
+            </div>
+            <!-- Footer About Text -->
+            <div class="col-lg-3">
+                <h6 class="text-uppercase mb-4">Kontaktdaten</h6>
+                <p class="lead mb-0">
+                    <font size="0">@model.Address.Address1</font> 
+                    <br />
+                    <font size="0">@model.Address.State @model.Address.Zip,</font> 
+                    <br>
+                    <font size="0">@model.Address.Mobile</font> 
+                </p>
+            </div>
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <h6 class="text-uppercase mb-4">Nutzungshinweise</h6>
+                <p class="lead mb-0">
+                    <font size="0"> Impressum</font> 
+                    <br />
+                    <font size="0">AGB</font> 
+                    <br>
+                    <font size="0">Datenschutz</font> 
+                </p>
+            </div>
+        </div>
+    </center>
+</footer>
+
+@code {
+
+    FooterModel model = new FooterModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        model = await Service.GetFooter();
+    }
+
+}
