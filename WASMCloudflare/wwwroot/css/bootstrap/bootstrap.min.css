@@ -520,10 +520,26 @@ pre {
     overflow-y: scroll
 }
 
-.footer {
+.footer 
+{
     position: absolute;
     bottom: 0px;
-    width: 100%;
+    width: 99.5%;
+}
+
+.main{
+    min-height: calc(100vh - 211px - 58px);
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+.content {
+    padding-bottom: 100px;
 }
 
 .container {
